@@ -1,0 +1,25 @@
+import io
+import unittest
+
+from contextlib import redirect_stdout
+from percogrid import PercoGrid
+
+
+
+class TestPercoGrid(unittest.TestCase):
+
+    def test_type(self):
+        pg = PercoGrid(6)
+        self.assertIsInstance(pg, PercoGrid)
+
+    def test_str(self):
+        pg = PercoGrid(4)
+        actual = io.StringIO()
+        with redirect_stdout(actual):
+            print(pg)
+        expected = "XXXX\nXXXX\nXXXX\nXXXX\n"
+        self.assertEqual(expected, actual.getvalue())
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -36,15 +36,16 @@ class PercoGrid:
         self.grid = [[Site.blocked for col in range(n)] for row in range(n)]
 
     def __str__(self):
-        res = []
+        result = []
         for row in self.grid:
+            res = []
             for site in row:
+                val = ' '
                 if site is Site.blocked:
-                    res.append('X')
-                else:
-                    res.append(' ')
-            res.append('\n')
-        return ''.join(res)
+                    val = 'X'
+                res.append(val)
+            result.append(''.join(res))
+        return '\n'.join(result)
 
 
 if __name__ == '__main__':
