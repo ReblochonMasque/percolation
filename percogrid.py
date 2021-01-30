@@ -16,5 +16,8 @@ class PercoGrid:
     neighbors are left, right, up, and down
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, n: int) -> None:
+        """creates n-by-n grid, with all sites initially blocked
+
+        :param n: int, number of sites in a side of the square grid
+        """
