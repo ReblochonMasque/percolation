@@ -9,6 +9,14 @@ In other words, a system percolates if we fill all open sites connected
 to the top row and that process fills some open site on the bottom row
 """
 
+from enum import Enum
+
+
+class Site(Enum):
+    blocked = 0     # cannot be opened, i/e this state does not change
+    closed = 1      # not opened yet
+    open = 2        # opened site
+
 
 class PercoGrid:
     """
