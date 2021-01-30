@@ -32,6 +32,8 @@ class PercoGrid:
 
         :param n: int, number of sites in a side of the square grid
         """
+        if n <= 0:
+            raise ValueError('n must be > 0')
         self.size = n * n
         self.grid = [[Site.blocked for col in range(n)] for row in range(n)]
 
