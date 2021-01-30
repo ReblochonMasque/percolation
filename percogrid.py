@@ -13,9 +13,10 @@ from enum import Enum
 
 
 class Site(Enum):
-    blocked = 0     # cannot be opened, i/e this state does not change
-    closed = 1      # not opened yet
-    open = 2        # opened site
+    """a Site is either open or blocked
+    """
+    blocked = 0
+    open = 1
 
 
 class PercoGrid:
