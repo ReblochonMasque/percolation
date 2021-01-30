@@ -16,6 +16,10 @@ class TestPercoGrid(unittest.TestCase):
         with self.assertRaises(ValueError):
             pg = PercoGrid(0)
 
+    def test_n_equal_minus_100(self):
+        with self.assertRaises(ValueError) as e:
+            pg = PercoGrid(-100)
+
     def test_str(self):
         pg = PercoGrid(4)
         actual = io.StringIO()
