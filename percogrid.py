@@ -9,6 +9,7 @@ In other words, a system percolates if we fill all open sites connected
 to the top row and that process fills some open site on the bottom row
 """
 
+from congeries import WeightedQuickUnionPathCompressionUF
 from enum import Enum
 
 
@@ -36,6 +37,7 @@ class PercoGrid:
             raise ValueError('n must be > 0')
         self.size = n * n
         self.grid = [[Site.blocked for col in range(n)] for row in range(n)]
+        self.uf = WeightedQuickUnionPathCompressionUF(self.size)
 
     def __str__(self):
         result = []
