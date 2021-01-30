@@ -16,6 +16,8 @@ class PercoGrid:
     neighbors are left, right, up, and down
     """
 
+    neighbor_offsets = ((-1, 0), (1, 0), (0, -1), (0, 1))
+
     def __init__(self, n: int) -> None:
         """creates n-by-n grid, with all sites initially blocked
 
