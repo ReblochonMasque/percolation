@@ -34,3 +34,8 @@ class PercoGrid:
         """
         self.size = n * n
         self.grid = [[Site.blocked for col in range(n)] for row in range(n)]
+
+
+if __name__ == '__main__':
+
+    pass
