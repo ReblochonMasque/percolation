@@ -47,6 +47,7 @@ class PercoGrid:
         self.rows = self.cols = n
         self.size = self.rows * self.cols
         self.grid = [[Site.BLOCKED for col in range(n)] for row in range(n)]
+        self.number_open_sites = 0
         self.uf = WeightedQuickUnionPathCompressionUF(self.size)
 
     def _base_1_to_base_0(self, row, col):
@@ -66,6 +67,7 @@ class PercoGrid:
         r, c = self._base_1_to_base_0(row, col)
         if self.grid[r][c] != Site.OPENED:
             self.grid[r][c] = Site.OPENED
+            self.number_open_sites += 1
 
     def isopen(self, row: int, col: int) -> bool:
         """is the site at pos (row, col) OPENED?
