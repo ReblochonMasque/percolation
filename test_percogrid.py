@@ -5,7 +5,6 @@ from contextlib import redirect_stdout
 from percogrid import PercoGrid
 
 
-
 class TestPercoGrid(unittest.TestCase):
 
     def test_type(self):
@@ -31,6 +30,11 @@ class TestPercoGrid(unittest.TestCase):
     def test_isopen_not(self):
         pg = PercoGrid(4)
         self.assertFalse(pg.isopen(1, 1))
+
+    def test_open_valid_site(self):
+        pg = PercoGrid(4)
+        pg.open(1, 2)
+        self.assertTrue(pg.isopen(1, 2))
 
 
 if __name__ == '__main__':
