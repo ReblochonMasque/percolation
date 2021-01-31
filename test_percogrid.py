@@ -36,6 +36,16 @@ class TestPercoGrid(unittest.TestCase):
         expected = " ███\n████\n████\n████\n"
         self.assertEqual(expected, actual.getvalue())
 
+    def test_str_2(self):
+        pg = PercoGrid(4)
+        for row, col in ((1, 1), (2, 2), (3, 3), (4, 4), (4, 1), (3, 2), (2, 3), (1, 4)):
+            pg.open(row, col)
+        actual = io.StringIO()
+        with redirect_stdout(actual):
+            print(pg)
+        expected = " ██ \n█  █\n█  █\n ██ \n"
+        self.assertEqual(expected, actual.getvalue())
+
     def test_isopen_not(self):
         pg = PercoGrid(4)
         self.assertFalse(pg.isopen(1, 1))
