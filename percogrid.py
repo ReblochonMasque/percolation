@@ -44,9 +44,17 @@ class PercoGrid:
         """
         if n <= 0:
             raise ValueError('n must be > 0')
-        self.size = n * n
+        self.rows = self.cols = n
+        self.size = self.rows * self.cols
         self.grid = [[Site.BLOCKED for col in range(n)] for row in range(n)]
         self.uf = WeightedQuickUnionPathCompressionUF(self.size)
+
+    def _base_1_to_base_0(self, row, col):
+        if not 1 <= row <= self.rows:
+            raise ValueError('row must be >= 1 and <= {self.rows}')
+        if not 1 <= col <= self.cols:
+            raise ValueError('col must be >= 1 and <= {self.cols}')
+        return row - 1, col - 1
 
     def open(self, row: int, col: int) -> None:
         """opens the site (row, col) if it is not OPENED already
@@ -55,8 +63,9 @@ class PercoGrid:
         :param col: col, the col
         :return: None
         """
-        if self.grid[row][col] != Site.OPENED:
-            self.grid[row][col] = Site.OPENED
+        r, c = self._base_1_to_base_0(row, col)
+        if self.grid[r][c] != Site.OPENED:
+            self.grid[r][c] = Site.OPENED
 
     def isopen(self, row: int, col: int) -> bool:
         """is the site at pos (row, col) OPENED?
@@ -65,7 +74,8 @@ class PercoGrid:
         :param col: col, the col
         :return: True if the site is OPENED, False otherwise
         """
-        return self.grid[row][col] == Site.OPENED
+        r, c = self._base_1_to_base_0(row, col)
+        return self.grid[r][c] == Site.OPENED
 
     def __str__(self):
         result = []
