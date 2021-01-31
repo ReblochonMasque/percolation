@@ -42,6 +42,8 @@ class PercoGrid:
     def isopen(self, row: int, col: int) -> bool:
         """is the site at pos (row, col) open?
 
+        :param row: int, the row
+        :param col: col, the col
         :return: True if the site is open, False otherwise
         """
         return self.grid[row][col] == Site.open
