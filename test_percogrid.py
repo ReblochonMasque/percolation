@@ -55,6 +55,11 @@ class TestPercoGrid(unittest.TestCase):
         pg.open(1, 2)
         self.assertTrue(pg.isopen(1, 2))
 
+    def test_number_open_sites_0(self):
+        pg = PercoGrid(4)
+        expected, actual = 0, pg.number_open_sites
+        self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main()
