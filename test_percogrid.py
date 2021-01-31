@@ -19,12 +19,12 @@ class TestPercoGrid(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             pg = PercoGrid(-100)
 
-    def test_str(self):
+    def test_str_0(self):
         pg = PercoGrid(4)
         actual = io.StringIO()
         with redirect_stdout(actual):
             print(pg)
-        expected = "XXXX\nXXXX\nXXXX\nXXXX\n"
+        expected = "████\n████\n████\n████\n"
         self.assertEqual(expected, actual.getvalue())
 
     def test_isopen_not(self):
