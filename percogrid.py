@@ -19,6 +19,12 @@ class Site(Enum):
     BLOCKED = 0
     OPENED = 1
 
+    def __str__(self):
+        if self is self.BLOCKED:
+            return '\u2588'
+        else:
+            return ' '
+
 
 class PercoGrid:
     """
@@ -64,17 +70,12 @@ class PercoGrid:
     def __str__(self):
         result = []
         for row in self.grid:
-            res = []
-            for site in row:
-                val = ' '
-                if site is Site.BLOCKED:
-                    val = 'X'
-                res.append(val)
-            result.append(''.join(res))
+            result.append(''.join((str(site) for site in row)))
         return '\n'.join(result)
 
 
 if __name__ == '__main__':
 
     pg = PercoGrid(6)
+    pg.open(1, 1)
     print(pg)
