@@ -28,6 +28,10 @@ class TestPercoGrid(unittest.TestCase):
         expected = "XXXX\nXXXX\nXXXX\nXXXX\n"
         self.assertEqual(expected, actual.getvalue())
 
+    def test_isopen_not(self):
+        pg = PercoGrid(4)
+        self.assertFalse(pg.isopen(1, 1))
+
 
 if __name__ == '__main__':
     unittest.main()
