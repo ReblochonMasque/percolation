@@ -60,10 +60,17 @@ class TestPercoGrid(unittest.TestCase):
         expected, actual = 0, pg.number_open_sites
         self.assertEqual(expected, actual)
 
+    def test_number_open_sites_2_a(self):
+        pg = PercoGrid(4)
+        pg.open(1, 2)
+        pg.open(2, 2)
+        expected, actual = 2, pg.number_open_sites
+        self.assertEqual(expected, actual)
+
     def test_number_open_sites_2_b(self):
         pg = PercoGrid(4)
         pg.open(1, 2)
-        pg.open(1, 2)
+        pg.open(1, 2)   # already open, should not be counted twice
         pg.open(2, 2)
         expected, actual = 2, pg.number_open_sites
         self.assertEqual(expected, actual)
