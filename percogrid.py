@@ -48,7 +48,18 @@ class PercoGrid:
         self.size = self.rows * self.cols
         self.grid = [[Site.BLOCKED for col in range(n)] for row in range(n)]
         self.number_open_sites = 0
-        self.uf = WeightedQuickUnionPathCompressionUF(self.size)
+        self.uf = WeightedQuickUnionPathCompressionUF(self.size+2)
+        self.top_ndx, self.bot_ndx = self.size, self.size + 1
+        self._connect_top_and_bottom()
+
+    def _connect_top_and_bottom(self):
+        print(self.uf.components_count)
+        for idx in range(self.cols):
+            self.uf.union(self.top_ndx, idx)
+            print(self.uf.components_count)
+        for idx in range(self.rows * (self.cols - 1), self.size):
+            self.uf.union(self.bot_ndx, idx)
+            print(self.uf.components_count)
 
     def _base_1_to_base_0(self, row, col):
         if not 1 <= row <= self.rows:
@@ -89,5 +100,5 @@ class PercoGrid:
 if __name__ == '__main__':
 
     pg = PercoGrid(6)
-    pg.open(1, 1)
+    # pg.open(1, 1)
     print(pg)
