@@ -89,7 +89,8 @@ class PercoGrid:
         for dr, dc in self.neighbor_offsets:
             rdr, cdc = r + dr, c + dc
             if self._is_valid_r_base0(rdr) and self._is_valid_c_base_0(cdc):
-                self.uf.union(n, self._get_flat_index(rdr, cdc))
+                if self._isopen_base_0(rdr, cdc):
+                    self.uf.union(n, self._get_flat_index(rdr, cdc))
 
     def _is_valid_r_base0(self, r: int) -> bool:
         return 0 <= r < self.rows
@@ -107,8 +108,17 @@ class PercoGrid:
         :param col: col, the col
         :return: True if the site is OPENED, False otherwise
         """
-        r, c = self._base_1_to_base_0(row, col)
+        return self._isopen_base_0(self._base_1_to_base_0(row, col))
+
+    def _isopen_base_0(self, r: int, c: int) -> bool:
         return self.grid[r][c] == Site.OPENED
+
+    def percolates(self) -> bool:
+        """does the system percolate?
+
+        :return: True if percolates, False otherwise
+        """
+        return self.uf.connected(self.top_ndx, self.bot_ndx)
 
     def __str__(self):
         result = []
@@ -119,6 +129,15 @@ class PercoGrid:
 
 if __name__ == '__main__':
 
-    pg = PercoGrid(6)
-    # pg.open(1, 1)
-    print(pg)
+    pg = PercoGrid(4)
+    while True:
+        r = input('row:')
+        c = input('col:')
+        pg.open(int(r), int(c))
+        print(pg)
+        print(pg.uf.id)
+        if pg.percolates():
+            print('PERCOLATES!')
+            break
+
+    print('done!')
