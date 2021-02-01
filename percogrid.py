@@ -18,12 +18,15 @@ class Site(Enum):
     """
     BLOCKED = 0
     OPENED = 1
+    FULL = 2
 
     def __str__(self):
         if self is self.BLOCKED:
             return '\u2588'
-        else:
+        elif self is self.OPENED:
             return ' '
+        else:
+            return '.'
 
 
 class PercoGrid:
