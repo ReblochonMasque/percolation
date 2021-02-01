@@ -62,11 +62,17 @@ class PercoGrid:
             print(self.uf.components_count)
 
     def _base_1_to_base_0(self, row, col):
-        if not 1 <= row <= self.rows:
+        if not self._is_valid_row(row):
             raise ValueError('row must be >= 1 and <= {self.rows}')
-        if not 1 <= col <= self.cols:
+        if not self._is_valid_col(col):
             raise ValueError('col must be >= 1 and <= {self.cols}')
         return row - 1, col - 1
+
+    def _is_valid_row(self, row: int) -> bool:
+        return 1 <= row <= self.rows
+
+    def _is_valid_col(self, col: int) -> bool:
+        return 1 <= col <= self.cols
 
     def open(self, row: int, col: int) -> None:
         """opens the site (row, col) if it is not OPENED already
