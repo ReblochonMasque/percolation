@@ -59,16 +59,16 @@ class PercoGrid:
             self.uf.union(self.bot_ndx, idx)
 
     def _base_1_to_base_0(self, row, col):
-        if not self._is_valid_row(row):
+        if not self._is_valid_row_base_1(row):
             raise ValueError('row must be >= 1 and <= {self.rows}')
-        if not self._is_valid_col(col):
+        if not self._is_valid_col_base_1(col):
             raise ValueError('col must be >= 1 and <= {self.cols}')
         return row - 1, col - 1
 
-    def _is_valid_row(self, row: int) -> bool:
+    def _is_valid_row_base_1(self, row: int) -> bool:
         return 1 <= row <= self.rows
 
-    def _is_valid_col(self, col: int) -> bool:
+    def _is_valid_col_base_1(self, col: int) -> bool:
         return 1 <= col <= self.cols
 
     def open(self, row: int, col: int) -> None:
@@ -82,6 +82,23 @@ class PercoGrid:
         if self.grid[r][c] != Site.OPENED:
             self.grid[r][c] = Site.OPENED
             self.number_open_sites += 1
+            self._connect_with_open_neighbors(r, c)
+
+    def _connect_with_open_neighbors(self, r: int, c: int):
+        n = self._get_flat_index(r, c)
+        for dr, dc in self.neighbor_offsets:
+            rdr, cdc = r + dr, c + dc
+            if self._is_valid_r_base0(rdr) and self._is_valid_c_base_0(cdc):
+                self.uf.union(n, self._get_flat_index(rdr, cdc))
+
+    def _is_valid_r_base0(self, r: int) -> bool:
+        return 0 <= r < self.rows
+
+    def _is_valid_c_base_0(self, c: int) -> bool:
+        return 0 <= c < self.cols
+
+    def _get_flat_index(self, r: int, c: int) -> int:
+        return r * c + c
 
     def isopen(self, row: int, col: int) -> bool:
         """is the site at pos (row, col) OPENED?
