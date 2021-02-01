@@ -53,13 +53,10 @@ class PercoGrid:
         self._connect_top_and_bottom()
 
     def _connect_top_and_bottom(self):
-        print(self.uf.components_count)
         for idx in range(self.cols):
             self.uf.union(self.top_ndx, idx)
-            print(self.uf.components_count)
         for idx in range(self.rows * (self.cols - 1), self.size):
             self.uf.union(self.bot_ndx, idx)
-            print(self.uf.components_count)
 
     def _base_1_to_base_0(self, row, col):
         if not self._is_valid_row(row):
