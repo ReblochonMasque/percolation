@@ -15,6 +15,7 @@ from typing import MutableMapping, Tuple
 class PercoView(tk.Canvas):
     left_offset = 3
     top_offset = 3
+    states = ['white', 'black', 'light_blue']
 
     def __init__(self, master, n: int, site_size: int):
         super().__init__(master)
@@ -31,7 +32,7 @@ class PercoView(tk.Canvas):
                     self.create_rectangle(
                         *self._get_coords(row, col),
                         outline='grey20',
-                        fill='black',
+                        fill=self.states[1],
                     )
 
     def _get_coords(
@@ -43,6 +44,9 @@ class PercoView(tk.Canvas):
         y0 = row * self.site_size + self.top_offset
         x1, y1 = x0 + self.site_size, y0 + self.site_size
         return (x0, y0), (x1, y1)
+
+    def update_site(self, row, col, status):
+        self.itemconfig(self.site_cells[(col, row)], bg=self.states[status])
 
 
 if __name__ == '__main__':
