@@ -18,15 +18,22 @@ class Site(Enum):
     """
     BLOCKED = 0
     OPENED = 1
-    FULL = 2
+
+    def is_blocked(self):
+        return self is self.BLOCKED
+
+    def is_open(self):
+        """check if is OPEN or is FULL
+
+        :return: True is self is OPEN or self is FULL, False otherwise
+        """
+        return self is not self.BLOCKED
 
     def __str__(self):
         if self is self.BLOCKED:
             return '\u2588'
-        elif self is self.OPENED:
-            return ' '
         else:
-            return '.'
+            return ' '
 
 
 class PercoGrid:
@@ -82,7 +89,7 @@ class PercoGrid:
         :return: None
         """
         r, c = self._base_1_to_base_0(row, col)
-        if self.grid[r][c] != Site.OPENED:
+        if self.grid[r][c].is_blocked():
             self.grid[r][c] = Site.OPENED
             self.number_open_sites += 1
             self._connect_with_open_neighbors(r, c)
@@ -102,7 +109,7 @@ class PercoGrid:
         return 0 <= c < self.cols
 
     def _get_flat_index(self, r: int, c: int) -> int:
-        return r * c + c
+        return r * self.cols + c
 
     def isopen(self, row: int, col: int) -> bool:
         """is the site at pos (row, col) OPENED?
@@ -114,7 +121,10 @@ class PercoGrid:
         return self._isopen_base_0(self._base_1_to_base_0(row, col))
 
     def _isopen_base_0(self, r: int, c: int) -> bool:
-        return self.grid[r][c] == Site.OPENED
+        return self.grid[r][c].is_open()
+
+    def _isfull_base_0(self, r: int, c: int) -> bool:
+        return self._isopen_base_0(r, c) and self.uf.connected(self._get_flat_index(r, c), self.top_ndx)
 
     def percolates(self) -> bool:
         """does the system percolate?
@@ -125,14 +135,20 @@ class PercoGrid:
 
     def __str__(self):
         result = []
-        for row in self.grid:
-            result.append(''.join((str(site) for site in row)))
+        for r, row in enumerate(self.grid):
+            res = []
+            for c, site in enumerate(row):
+                s = str(site)
+                if self._isfull_base_0(r, c):
+                    s = '.'
+                res.append(s)
+            result.append(''.join(res))
         return '\n'.join(result)
 
 
 if __name__ == '__main__':
 
-    pg = PercoGrid(4)
+    pg = PercoGrid(6)
     while True:
         r = input('row:')
         c = input('col:')
