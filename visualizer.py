@@ -1,7 +1,7 @@
 
 import tkinter as tk
 
-from typing import Any, MutableMapping, Tuple
+from typing import MutableMapping, Tuple
 
 
 # class UFView(tk.Canvas):
