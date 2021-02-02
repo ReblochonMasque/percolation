@@ -23,6 +23,16 @@ class PercoView(tk.Canvas):
         self.site_size = site_size
         self.sites: Mapping[Tuple[int, int], int] = {}
 
+    def _get_coords(
+            self,
+            row,
+            col
+    ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
+        x0 = col * self.site_size + self.left_offset
+        y0 = row * self.site_size + self.top_offset
+        x1, y1 = x0 + self.site_size, y0 + self.site_size
+        return (x0, y0), (x1, y1)
+
 
 if __name__ == '__main__':
 
