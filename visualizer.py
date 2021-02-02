@@ -10,6 +10,14 @@ class UFView(tk.Canvas):
         self.n = n
 
 
+class PercoView(tk.Canvas):
+
+    def __init__(self, master, n: int, scale: int):
+        super().__init__(master)
+        self.master = master
+        self.n = n
+
+
 if __name__ == '__main__':
 
     pg = PercoGrid(6)
