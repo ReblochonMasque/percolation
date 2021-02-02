@@ -1,7 +1,7 @@
 
 import tkinter as tk
 
-from typing import Any, Mapping, Tuple
+from typing import Any, MutableMapping, Tuple
 
 
 # class UFView(tk.Canvas):
@@ -21,7 +21,7 @@ class PercoView(tk.Canvas):
         self.master = master
         self.n = n
         self.site_size = site_size
-        self.sites: Mapping[Tuple[int, int], int] = {}
+        self.sites: MutableMapping[Tuple[int, int], int] = {}
         self.create_grid()
 
     def create_grid(self):
