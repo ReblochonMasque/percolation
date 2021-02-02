@@ -4,7 +4,7 @@ import tkinter as tk
 
 class UFView(tk.Canvas):
 
-    def __init__(self, master, n: int, scale: int):
+    def __init__(self, master, n: int = 10, scale: int = 1):
         super().__init__(master)
         self.master = master
         self.n = n
@@ -12,7 +12,7 @@ class UFView(tk.Canvas):
 
 class PercoView(tk.Canvas):
 
-    def __init__(self, master, n: int, scale: int):
+    def __init__(self, master, n: int = 10, scale: int = 1):
         super().__init__(master)
         self.master = master
         self.n = n
@@ -20,15 +20,8 @@ class PercoView(tk.Canvas):
 
 if __name__ == '__main__':
 
-    pg = PercoGrid(6)
-    while True:
-        r = input('row:')
-        c = input('col:')
-        pg.open(int(r), int(c))
-        print(pg)
-        print(pg.uf.id)
-        if pg.percolates():
-            print('PERCOLATES!')
-            break
+    root = tk.Tk()
+    pv = PercoView(root)
+    pv.pack()
 
-    print('done!')
+    root.mainloop()
