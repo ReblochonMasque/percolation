@@ -4,12 +4,12 @@ import tkinter as tk
 from typing import Any, Mapping, Tuple
 
 
-class UFView(tk.Canvas):
-
-    def __init__(self, master, n: int = 10, scale: int = 1):
-        super().__init__(master)
-        self.master = master
-        self.n = n
+# class UFView(tk.Canvas):
+#
+#     def __init__(self, master, n: int = 10, scale: int = 1):
+#         super().__init__(master)
+#         self.master = master
+#         self.n = n
 
 
 class PercoView(tk.Canvas):
@@ -42,8 +42,11 @@ class PercoView(tk.Canvas):
 
 if __name__ == '__main__':
 
+    WIDTH = HEIGHT = 600
+
     root = tk.Tk()
+    root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
     pv = PercoView(root)
-    pv.pack()
+    pv.pack(expand=True, fill=tk.BOTH)
 
     root.mainloop()
