@@ -120,6 +120,9 @@ class PercoGrid:
         """
         return self._isopen_base_0(*self._base_1_to_base_0(row, col))
 
+    def isfull(self, row, col):
+        return self._isfull_base_0(*self._base_1_to_base_0(row, col))
+
     def _isopen_base_0(self, r: int, c: int) -> bool:
         return self.grid[r][c].is_open()
 
