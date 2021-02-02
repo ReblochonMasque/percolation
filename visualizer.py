@@ -21,13 +21,13 @@ class PercoView(tk.Canvas):
         self.master = master
         self.n = n
         self.site_size = site_size
-        self.sites: MutableMapping[Tuple[int, int], int] = {}
+        self.site_cells: MutableMapping[Tuple[int, int], int] = {}
         self.create_grid()
 
     def create_grid(self):
         for row in range(self.n):
             for col in range(self.n):
-                self.sites[(row, col)] = self.create_rectangle(*self._get_coords(row, col))
+                self.site_cells[(row, col)] = self.create_rectangle(*self._get_coords(row, col))
 
     def _get_coords(
             self,
