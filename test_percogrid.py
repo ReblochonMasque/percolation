@@ -33,7 +33,7 @@ class TestPercoGrid(unittest.TestCase):
         actual = io.StringIO()
         with redirect_stdout(actual):
             print(pg)
-        expected = " ███\n████\n████\n████\n"
+        expected = ".███\n████\n████\n████\n"
         self.assertEqual(expected, actual.getvalue())
 
     def test_str_2(self):
@@ -43,7 +43,7 @@ class TestPercoGrid(unittest.TestCase):
         actual = io.StringIO()
         with redirect_stdout(actual):
             print(pg)
-        expected = " ██ \n█  █\n█  █\n ██ \n"
+        expected = ".██.\n█  █\n█  █\n ██ \n"
         self.assertEqual(expected, actual.getvalue())
 
     def test_isopen_not(self):
