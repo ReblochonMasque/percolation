@@ -16,7 +16,7 @@ class PercoView(tk.Canvas):
     left_offset = 3
     top_offset = 3
 
-    def __init__(self, master, n: int = 10, site_size: int = 25):
+    def __init__(self, master, n: int, site_size: int):
         super().__init__(master)
         self.master = master
         self.n = n
@@ -27,7 +27,12 @@ class PercoView(tk.Canvas):
     def create_grid(self):
         for row in range(self.n):
             for col in range(self.n):
-                self.site_cells[(row, col)] = self.create_rectangle(*self._get_coords(row, col))
+                self.site_cells[(row, col)] = \
+                    self.create_rectangle(
+                        *self._get_coords(row, col),
+                        outline='grey20',
+                        fill='black',
+                    )
 
     def _get_coords(
             self,
@@ -46,7 +51,8 @@ if __name__ == '__main__':
 
     root = tk.Tk()
     root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    pv = PercoView(root)
+    n = 25
+    pv = PercoView(root, n, (WIDTH-PercoView.left_offset*2)//n)
     pv.pack(expand=True, fill=tk.BOTH)
 
     root.mainloop()
