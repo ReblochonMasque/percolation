@@ -23,17 +23,28 @@ class PercoView(tk.Canvas):
         self.n = n
         self.site_size = site_size
         self.site_cells: MutableMapping[Tuple[int, int], int] = {}
+        self.reverse_site_cells: MutableMapping[int, Tuple[int, int]] = {}
         self.create_grid()
+
+        self.bind("<Button-1>", self.open)
+
+    def open(self, event):
+        print(self.find_closest(event.x, event.y))
+        print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
+        pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
+        self.update_sites(pg)
+
 
     def create_grid(self):
         for row in range(self.n):
             for col in range(self.n):
-                self.site_cells[(row, col)] = \
-                    self.create_rectangle(
-                        *self._get_coords(row, col),
-                        outline='grey20',
-                        fill=self.states[0],
-                    )
+                site = self.create_rectangle(
+                    *self._get_coords(row, col),
+                    outline='grey20',
+                    fill=self.states[0],
+                )
+                self.site_cells[(row, col)] = site
+                self.reverse_site_cells[site] = (row+1, col+1)
 
     def _get_coords(
             self,
@@ -64,7 +75,6 @@ def run(pg, pv, sites):
     root.after(500, run, pg, pv, sites)
 
 
-
 if __name__ == '__main__':
 
     WIDTH = HEIGHT = 600
@@ -73,7 +83,7 @@ if __name__ == '__main__':
 
     root = tk.Tk()
     root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    n = 5
+    n = 50
     pv = PercoView(root, n, (WIDTH-PercoView.left_offset*2)//n)
     pv.pack(expand=True, fill=tk.BOTH)
 
