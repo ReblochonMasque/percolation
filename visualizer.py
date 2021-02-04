@@ -34,7 +34,6 @@ class PercoView(tk.Canvas):
         pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
         self.update_sites(pg)
 
-
     def create_grid(self):
         for row in range(self.n):
             for col in range(self.n):
@@ -83,7 +82,7 @@ if __name__ == '__main__':
 
     root = tk.Tk()
     root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    n = 50
+    n = 6
     pv = PercoView(root, n, (WIDTH-PercoView.left_offset*2)//n)
     pv.pack(expand=True, fill=tk.BOTH)
 
