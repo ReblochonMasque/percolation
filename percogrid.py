@@ -36,7 +36,7 @@ class PercoGrid:
         self.opened_site = set()
         self.uf_top = WeightedQuickUnionPathCompressionUF(self.size+2)
         self.uf_bot = WeightedQuickUnionPathCompressionUF(self.size+2)
-        self.virtual_top, self.virtual_bot = 0, self.size + 1
+        self.virtual_top, self.virtual_bot = self.size, self.size + 1
         self._percolates = False
 
     def _is_valid_row_col(self, row: int, col: int) -> bool:
@@ -95,11 +95,13 @@ class PercoGrid:
 
 if __name__ == '__main__':
 
-    sites = [(5, 1), (4, 1), (3, 1), (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
+    sites = [(5, 1), (4, 1), (3, 1), (5, 3), (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
     n = 5
     pg = PercoGrid(n)
     for row, col in sites:
         pg.open(row, col)
+        print(row, col)
+        input()
         print(pg)
         if pg.percolates():
             print('PERCOLATES!!')
