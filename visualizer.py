@@ -4,14 +4,6 @@ from percogrid import PercoGrid
 from typing import MutableMapping, Tuple
 
 
-# class UFView(tk.Canvas):
-#
-#     def __init__(self, master, n: int = 10, scale: int = 1):
-#         super().__init__(master)
-#         self.master = master
-#         self.n = n
-
-
 class PercoView(tk.Canvas):
     left_offset = 3
     top_offset = 3
