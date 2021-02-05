@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 from percolation import Percolation
 
 
-class TestPercoGrid(unittest.TestCase):
+class TestPercolation(unittest.TestCase):
 
     def test_type(self):
         pg = Percolation(6)
