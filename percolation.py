@@ -81,9 +81,9 @@ class Percolation:
 
     def __str__(self):
         res = []
-        for row in range(1, n+1):
-            for col in range(1, n+1):
-                c = 'X'
+        for row in range(1, self.rows+1):
+            for col in range(1, self.cols+1):
+                c = '█'
                 if self.isopen(row, col):
                     c = ' '
                 if self.isfull(row, col):

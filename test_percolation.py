@@ -19,13 +19,13 @@ class TestPercolation(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             pg = Percolation(-100)
 
-    # def test_str_0(self):
-    #     pg = Percolation(4)
-    #     actual = io.StringIO()
-    #     with redirect_stdout(actual):
-    #         print(pg)
-    #     expected = "████\n████\n████\n████\n"
-    #     self.assertEqual(expected, actual.getvalue())
+    def test_str_0(self):
+        pg = Percolation(4)
+        actual = io.StringIO()
+        with redirect_stdout(actual):
+            print(pg)
+        expected = "████\n████\n████\n████\n\n"
+        self.assertEqual(expected, actual.getvalue())
 
     # def test_str_1(self):
     #     pg = Percolation(4)
