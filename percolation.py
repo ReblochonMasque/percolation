@@ -79,7 +79,11 @@ class Percolation:
     def percolates(self) -> bool:
         return self._percolates
 
-    def number_of_open_sites(self):
+    def number_of_open_sites(self) -> int:
+        """returns the number of open sites
+
+        :return: int, the number of open sites
+        """
         return len(self.opened_site)
 
     def __str__(self):
