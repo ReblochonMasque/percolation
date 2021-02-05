@@ -57,7 +57,7 @@ class Percolation:
         """
         return (row - 1) * self.cols + col - 1
 
-    def _get_flat_neighbors(self, row: int, col: int) -> List[int]:
+    def _get_valid_flat_neighbors(self, row: int, col: int) -> List[int]:
         """calculates & returns the flat indices of the neighbors of the site at row, col
 
 
@@ -83,7 +83,7 @@ class Percolation:
         if site in self.opened_site:
             return
         self.opened_site.add(site)
-        for neighbor in self._get_flat_neighbors(row, col):
+        for neighbor in self._get_valid_flat_neighbors(row, col):
             if neighbor in self.opened_site:
                 self.uf_top.union(site, neighbor)
                 self.uf_bot.union(site, neighbor)
