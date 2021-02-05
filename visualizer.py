@@ -4,7 +4,7 @@ from percolation import Percolation
 from typing import MutableMapping, Tuple
 
 
-class PercoView(tk.Canvas):
+class PercolationGridView(tk.Canvas):
     left_offset = 3
     top_offset = 3
     states = ['black', 'white', 'blue']
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
     n = 16
-    pv = PercoView(root, n, (WIDTH-PercoView.left_offset*2)//n)
+    pv = PercolationGridView(root, n, (WIDTH - PercolationGridView.left_offset * 2) // n)
     pv.pack(expand=True, fill=tk.BOTH)
 
     pg = Percolation(n)
