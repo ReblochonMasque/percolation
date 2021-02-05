@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from percogrid import PercoGrid
+from percogrid import Percolation
 from typing import MutableMapping, Tuple
 
 
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     pv = PercoView(root, n, (WIDTH-PercoView.left_offset*2)//n)
     pv.pack(expand=True, fill=tk.BOTH)
 
-    pg = PercoGrid(n)
+    pg = Percolation(n)
 
     tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
 

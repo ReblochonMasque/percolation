@@ -13,7 +13,7 @@ from congeries import WeightedQuickUnionPathCompressionUF
 from typing import List
 
 
-class PercoGrid:
+class Percolation:
     """
     uses an n-by-n grid of sites to represent a percolation model
     neighbors are left, right, up, and down
@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     sites = [(5, 1), (4, 1), (3, 1), (5, 3), (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
     n = 5
-    pg = PercoGrid(n)
+    pg = Percolation(n)
     for row, col in sites:
         pg.open(row, col)
         print(row, col)
