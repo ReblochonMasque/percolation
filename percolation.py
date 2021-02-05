@@ -40,6 +40,12 @@ class Percolation:
         self._percolates = False
 
     def _is_valid_row_col(self, row: int, col: int) -> bool:
+        """Checks the validity of row and col indices
+
+        :param row: int, the row (base 1) of the grid
+        :param col: int, the col (base 1) of the grid
+        :return: True if both row and col are valid indices, False otherwise
+        """
         return 1 <= row <= self.rows and 1 <= col <= self.cols
 
     def _get_flat_index(self, row: int, col: int) -> int:
