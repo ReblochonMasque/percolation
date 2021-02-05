@@ -25,6 +25,7 @@ class PercolationGridView(tk.Canvas):
         print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
         pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
         self.update_sites(pg)
+        print(f'components_count: {pg.uf_top.components_count}')
 
     def create_grid(self):
         for row in range(self.n):
