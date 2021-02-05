@@ -58,6 +58,13 @@ class Percolation:
         return (row - 1) * self.cols + col - 1
 
     def _get_flat_neighbors(self, row: int, col: int) -> List[int]:
+        """calculates & returns the flat indices of the neighbors of the site at row, col
+
+
+        :param row: int, the row (base 1) of the grid
+        :param col: int, the col (base 1) of the grid
+        :return: a list of the valid flat indices, neighbors of site at row, col
+        """
         neighbors = []
         for dr, dc in self.neighbor_offsets:
             nr, nc = row + dr, col + dc
