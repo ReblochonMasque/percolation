@@ -48,12 +48,14 @@ class PercoView(tk.Canvas):
         return (x0, y0), (x1, y1)
 
     def update_sites(self, pg):
-        for r, line in enumerate(pg.grid):
-            for c, site in enumerate(line):
-                status = site.value
-                if status == 1 and pg.isfull(r+1, c+1):
-                    status = 2
-                self.update_site(r, c, status)
+        for sdx in range(1, pg.size+1):
+            row, col = (sdx-1) // pg.rows + 1, (sdx-1) % pg.cols + 1
+            status = 0
+            if pg.isfull(row, col):
+                status = 2
+            elif pg.isopen(row, col):
+                status = 1
+            self.update_site(row-1, col-1, status)
 
     def update_site(self, row, col, status):
         self.itemconfig(self.site_cells[(row, col)], fill=self.states[status])
@@ -74,7 +76,7 @@ if __name__ == '__main__':
 
     root = tk.Tk()
     root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    n = 6
+    n = 16
     pv = PercoView(root, n, (WIDTH-PercoView.left_offset*2)//n)
     pv.pack(expand=True, fill=tk.BOTH)
 
