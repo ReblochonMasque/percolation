@@ -1,10 +1,9 @@
 """
-a percolation system is represented using a grid of sites.
-Each site is either OPENED or BLOCKED. A full site is an OPENED site that can
-be connected to an OPENED site in the top row via a chain of neighboring
-OPENED sites.
+Modelization of a percolation system on a square grid of sites.
+Each site is either BLOCKED, OPEN, or FULL.
+A FULL site is an OPEN site connected directly to the top row
 
-We say the system percolates if there is a full site in the bottom row.
+The system percolates if a connected component links the top and bottom rows.
 In other words, a system percolates if we fill all OPENED sites connected
 to the top row and that process fills some OPENED site on the bottom row
 """
