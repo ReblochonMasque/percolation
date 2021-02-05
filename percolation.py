@@ -49,6 +49,12 @@ class Percolation:
         return 1 <= row <= self.rows and 1 <= col <= self.cols
 
     def _get_flat_index(self, row: int, col: int) -> int:
+        """calculates the flat index corresponding to row and col, and returns it
+
+        :param row: int, the row (base 1) of the grid
+        :param col: int, the col (base 1) of the grid
+        :return: int, the flat index corresponding to row and col
+        """
         return (row - 1) * self.cols + col - 1
 
     def _get_flat_neighbors(self, row: int, col: int) -> List[int]:
