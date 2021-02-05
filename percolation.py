@@ -54,6 +54,12 @@ class Percolation:
         return neighbors
 
     def open(self, row: int, col: int) -> None:
+        """opens the site at row, col, and updates the _percolates status flag
+
+        :param row: int, the row (base 1) of the grid
+        :param col: int, the col (base 1) of the grid
+        :return: None
+        """
         site = self._get_flat_index(row, col)
         if site in self.opened_site:
             return
