@@ -55,10 +55,10 @@ class TestPercolation(unittest.TestCase):
         pg.open(1, 2)
         self.assertTrue(pg.isopen(1, 2))
 
-    # def test_number_open_sites_0(self):
-    #     pg = Percolation(4)
-    #     expected, actual = 0, pg.number_open_sites
-    #     self.assertEqual(expected, actual)
+    def test_number_open_sites_0(self):
+        pg = Percolation(4)
+        expected, actual = 0, pg.number_of_open_sites()
+        self.assertEqual(expected, actual)
 
     # def test_number_open_sites_2_a(self):
     #     pg = Percolation(4)
