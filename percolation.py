@@ -73,7 +73,13 @@ class Percolation:
     def isopen(self, row: int, col: int) -> bool:
         return self._get_flat_index(row, col) in self.opened_site
 
-    def isfull(self, row, col):
+    def isfull(self, row, col) -> bool:
+        """returns True if the site at row, col is full, False otherwise
+
+        :param row: int, the row (base 1) of the grid
+        :param col: int, the col (base 1) of the grid
+        :return: True if the site at row, col is full, False otherwise
+        """
         return self.uf_top.connected(self._get_flat_index(row, col), self.virtual_top)
 
     def percolates(self) -> bool:
