@@ -70,13 +70,13 @@ def run(pg, pv, sites):
 
 if __name__ == '__main__':
 
-    WIDTH = HEIGHT = 600
+    WIDTH, HEIGHT = 600, 700
 
     sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
 
     root = tk.Tk()
     root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    n = 16
+    n = 5
     pv = PercolationGridView(root, n, (WIDTH - PercolationGridView.left_offset * 2) // n)
     pv.pack(expand=True, fill=tk.BOTH)
 
