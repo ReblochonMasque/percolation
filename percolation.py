@@ -15,11 +15,8 @@ from typing import List
 
 class Percolation:
     """
-    uses an n-by-n grid of sites to represent a percolation model
-    neighbors are left, right, up, and down
-
-    By convention, the row and column indices are integers between
-    1 and n, where (1, 1) is the upper-left site
+    models a percolation simulation on a square grid, using
+    a UnionFind data structure
     """
 
     neighbor_offsets = ((-1, 0), (1, 0), (0, -1), (0, 1))
