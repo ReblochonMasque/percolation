@@ -2,7 +2,7 @@ import io
 import unittest
 
 from contextlib import redirect_stdout
-from percogrid import Percolation
+from percolation import Percolation
 
 
 class TestPercoGrid(unittest.TestCase):

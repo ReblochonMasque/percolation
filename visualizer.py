@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from percogrid import Percolation
+from percolation import Percolation
 from typing import MutableMapping, Tuple
 
 
