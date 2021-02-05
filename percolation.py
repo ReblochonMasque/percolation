@@ -77,6 +77,10 @@ class Percolation:
         return self.uf_top.connected(self._get_flat_index(row, col), self.virtual_top)
 
     def percolates(self) -> bool:
+        """returns True if the system percolates
+
+        :return: True if the system percolates, False otherwise
+        """
         return self._percolates
 
     def number_of_open_sites(self) -> int:
