@@ -79,6 +79,9 @@ class Percolation:
     def percolates(self) -> bool:
         return self._percolates
 
+    def number_of_open_sites(self):
+        return len(self.opened_site)
+
     def __str__(self):
         res = []
         for row in range(1, self.rows+1):
