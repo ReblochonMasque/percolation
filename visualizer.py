@@ -22,6 +22,7 @@ class PercolationGridView(tk.Canvas):
         self.bind("<Button-1>", self.open)
 
     def open(self, event):
+        pg = self.master.controller.perco
         print(self.find_closest(event.x, event.y))
         print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
         pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
