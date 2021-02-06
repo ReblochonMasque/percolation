@@ -85,6 +85,11 @@ def val_closest_to(n: int, val: int) -> int:
     :param val: int, value to approximate
     :return: int, approximate value closest to val
     """
+    n_partitions = val // n
+    low, high = val - n_partitions * n, n * (n_partitions + 1) - val
+    if low < high:
+        return n_partitions * n
+    return (n_partitions + 1) * n
 
 
 if __name__ == '__main__':
