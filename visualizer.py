@@ -78,10 +78,19 @@ class Controller:
         self.master = tk.Tk()
 
 
+def _closest_to(n: int, val: int) -> int:
+    """calculates and returns tne total width of n integer partitions of val
+
+    :param n: int, number of partitions
+    :param val: int, value to approximate
+    :return: int, approximate value closest to val
+    """
+
+
+
 
 if __name__ == '__main__':
 
-    WIDTH, HEIGHT = 600, 700
 
     sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
 
