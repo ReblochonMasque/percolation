@@ -5,6 +5,7 @@ from typing import MutableMapping, Tuple
 
 
 class PercolationGridView(tk.Canvas):
+    _WIDTH, _HEIGHT = 600, 600
     left_offset = 3
     top_offset = 3
     states = ['black', 'white', 'blue']
@@ -70,7 +71,6 @@ class PercolationGridView(tk.Canvas):
 
 
 class Controller:
-    _WIDTH, _HEIGHT = 600, 600
 
     def __init__(self, n: int):
         self.n = n
