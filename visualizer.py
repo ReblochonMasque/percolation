@@ -72,14 +72,6 @@ class PercoFrame(tk.Frame):
         self.percocanvas.pack()
 
 
-
-# def run(pg, pv, sites):
-#     site = sites.pop(0)
-#     pg.open(*site)
-#     pv.update_sites(pg)
-#     root.after(500, run, pg, pv, sites)
-
-
 class Controller:
 
     def __init__(self, n: int):
@@ -100,6 +92,13 @@ def val_closest_to(n: int, val: int) -> int:
     if low < high:
         return n_partitions * n
     return (n_partitions + 1) * n
+
+
+# def run(pg, pv, sites):
+#     site = sites.pop(0)
+#     pg.open(*site)
+#     pv.update_sites(pg)
+#     root.after(500, run, pg, pv, sites)
 
 
 if __name__ == '__main__':
