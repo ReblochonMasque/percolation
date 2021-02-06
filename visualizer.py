@@ -62,11 +62,16 @@ class PercolationGridView(tk.Canvas):
         self.itemconfig(self.site_cells[(row, col)], fill=self.states[status])
 
 
-def run(pg, pv, sites):
-    site = sites.pop(0)
-    pg.open(*site)
-    pv.update_sites(pg)
-    root.after(500, run, pg, pv, sites)
+# def run(pg, pv, sites):
+#     site = sites.pop(0)
+#     pg.open(*site)
+#     pv.update_sites(pg)
+#     root.after(500, run, pg, pv, sites)
+
+
+class Controller:
+    def __init__(self):
+        pass
 
 
 if __name__ == '__main__':
