@@ -70,9 +70,13 @@ class PercolationGridView(tk.Canvas):
 
 
 class Controller:
+    _WIDTH, _HEIGHT = 600, 600
+
     def __init__(self, n: int):
         self.n = n
         self.perco = Percolation(self.n)
+        self.master = tk.Tk()
+
 
 
 if __name__ == '__main__':
