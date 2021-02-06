@@ -5,16 +5,16 @@ from typing import MutableMapping, Tuple
 
 
 class PercolationGridView(tk.Canvas):
-    _WIDTH, _HEIGHT = 600, 600
+
     left_offset = 3
     top_offset = 3
     states = ['black', 'white', 'blue']
 
-    def __init__(self, master, n: int, site_size: int):
-        super().__init__(master)
+    def __init__(self, master, n: int, **kwargs):
+        super().__init__(master, **kwargs)
         self.master = master
         self.n = n
-        self.site_size = site_size
+        self.site_size = kwargs['width'] // self.n
         self.site_cells: MutableMapping[Tuple[int, int], int] = {}
         self.reverse_site_cells: MutableMapping[int, Tuple[int, int]] = {}
         self.create_grid()
@@ -64,11 +64,16 @@ class PercolationGridView(tk.Canvas):
 
 
 class PercoFrame(tk.Frame):
+    _grid_width, _grid_height = 600, 600
 
     def __init__(self, master, n: int):
         self.master = master
         super().__init__(self.master)
-        self.percocanvas = PercolationGridView(n, 10)
+        self.n = n
+        _gw = _gh = val_closest_to(self.n, PercoFrame._grid_width)
+        self.grid_width = _gw + PercolationGridView.left_offset * 2
+        self._grid_height = _gh + PercolationGridView.top_offset * 2
+        self.percocanvas = PercolationGridView(self, n, width=self.grid_width, height=self._grid_height)
         self.percocanvas.pack()
 
 
@@ -78,6 +83,8 @@ class Controller:
         self.n = n
         self.perco = Percolation(self.n)
         self.master = tk.Tk()
+        self.percoframe = PercoFrame(self.master, self.n)
+        self.percoframe.pack()
 
 
 def val_closest_to(n: int, val: int) -> int:
@@ -103,16 +110,18 @@ def val_closest_to(n: int, val: int) -> int:
 
 if __name__ == '__main__':
 
-    sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
+    # sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
+    #
+    # root = tk.Tk()
+    # root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
+    # n = 5
+    # pv = PercolationGridView(root, n, (WIDTH - PercolationGridView.left_offset * 2) // n)
+    # pv.pack(expand=True, fill=tk.BOTH)
+    #
+    # pg = Percolation(n)
+    #
+    # tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
 
-    root = tk.Tk()
-    root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    n = 5
-    pv = PercolationGridView(root, n, (WIDTH - PercolationGridView.left_offset * 2) // n)
-    pv.pack(expand=True, fill=tk.BOTH)
+    c = Controller(10)
 
-    pg = Percolation(n)
-
-    tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
-
-    root.mainloop()
+    c.master.mainloop()
