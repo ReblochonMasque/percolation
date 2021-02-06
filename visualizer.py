@@ -63,6 +63,15 @@ class PercolationGridView(tk.Canvas):
         self.itemconfig(self.site_cells[(row, col)], fill=self.states[status])
 
 
+class PercoFrame(tk.Frame):
+
+    def __init__(self, master, n: int):
+        self.master = master
+        super().__init__(self.master)
+        self.percocanvas = PercolationGridView(n, 10)
+
+
+
 # def run(pg, pv, sites):
 #     site = sites.pop(0)
 #     pg.open(*site)
