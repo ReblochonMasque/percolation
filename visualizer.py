@@ -69,6 +69,7 @@ class PercoFrame(tk.Frame):
         self.master = master
         super().__init__(self.master)
         self.percocanvas = PercolationGridView(n, 10)
+        self.percocanvas.pack()
 
 
 
