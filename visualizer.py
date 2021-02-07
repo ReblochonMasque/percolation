@@ -99,6 +99,13 @@ class PercoFrame(tk.Frame):
 
         self.dashboard.pack(fill=tk.X)
 
+        pub.subscribe(self.update_data, "update_data")
+
+    def update_data(self, open_sites: int, conn_components: int, percolates: bool) -> None:
+        self.open_sites_var.set(f'open sites: {open_sites}')
+        self.connected_components_var.set(f'connected_components: {conn_components}')
+        self.percolates_var.set(f'percolates: {percolates}')
+
 
 class Controller:
 
@@ -113,7 +120,17 @@ class Controller:
 
     def open_site(self, row, col):
         self.perco.open(row, col)
+        self.dispatch_messages()
+
+    def dispatch_messages(self):
         pub.sendMessage("update_view", pg=self.perco)
+        open_sites = self.perco.number_of_open_sites()
+        conn_components = self.perco.uf_top.components_count
+        percolates = self.perco.percolates()
+        pub.sendMessage("update_data",
+                        open_sites=open_sites,
+                        conn_components=conn_components,
+                        percolates=percolates)
 
 
 def val_closest_to(n: int, val: int) -> int:
