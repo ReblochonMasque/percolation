@@ -90,7 +90,7 @@ class PercoFrame(tk.Frame):
         self.display_connected_components_lbl.pack(anchor=tk.NE)
         self.left_dash.pack(side=tk.LEFT)
 
-        self.percolates_var  = tk.StringVar()
+        self.percolates_var = tk.StringVar()
         self.display_percolates_var_lbl = tk.Label(self.dashboard, textvariable=self.percolates_var)
         self.display_percolates_var_lbl.pack(side=tk.RIGHT)
 
@@ -135,7 +135,7 @@ class Controller:
         """
         pub.sendMessage("update_view", pg=self.perco)
         open_sites = self.perco.number_of_open_sites()
-        conn_components = self.perco.uf_top.components_count
+        conn_components = self.perco.uf_top.components_count, self.perco.uf_bot.components_count
         percolates = self.perco.percolates()
         pub.sendMessage("update_data",
                         open_sites=open_sites,
@@ -178,7 +178,7 @@ if __name__ == '__main__':
     #
     # tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
 
-    n = 5
+    n = 15
     controller = Controller(n)
 
     controller.master.mainloop()
