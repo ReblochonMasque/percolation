@@ -20,15 +20,19 @@ class PercolationGridView(tk.Canvas):
         self.reverse_site_cells: MutableMapping[int, Tuple[int, int]] = {}
         self.create_grid()
 
-        self.bind("<Button-1>", self.open)
+        self.bind("<Button-1>", self.on_click)
 
-    def open(self, event):
+    def on_click(self, event):
+
+        # replace with a call to controller
+        ##########################################################################
         pg = self.master.controller.perco
         print(self.find_closest(event.x, event.y))
         print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
         pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
         self.update_sites(pg)
         print(f'components_count: {pg.uf_top.components_count}')
+        ##########################################################################
 
     def create_grid(self):
         for row in range(self.n):
