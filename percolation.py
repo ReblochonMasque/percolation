@@ -153,6 +153,30 @@ class PercolationVisModel(Percolation):
         super().__init__(n)
         self.uf_cc = WeightedQuickUnionPathCompressionUF(self.size + 1)
 
+    def open(self, row: int, col: int) -> None:
+        """opens the site at row, col, and updates the _percolates status flag
+
+        :param row: int, the row (base 1) of the grid
+        :param col: int, the col (base 1) of the grid
+        :return: None
+        """
+        site = self._get_flat_index(row, col)
+        if site in self.opened_site:
+            return
+        self.opened_site.add(site)
+        for neighbor in self._get_valid_flat_neighbors(row, col):
+            if neighbor in self.opened_site:
+                self.uf_top.union(site, neighbor)
+                self.uf_bot.union(site, neighbor)
+                self.uf_cc.union(site, neighbor)
+        if row == 1:
+            self.uf_top.union(site, self.virtual_top)
+        if row == self.rows:
+            self.uf_bot.union(site, self.virtual_bot)
+        if self.uf_top.connected(site, self.virtual_top) and \
+                self.uf_bot.connected(site, self.virtual_bot):
+            self._percolates = True
+
 
 if __name__ == '__main__':
 
