@@ -151,6 +151,6 @@ if __name__ == '__main__':
     #
     # tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
 
-    contr = Controller(10)
+    controller = Controller(10)
 
-    contr.master.mainloop()
+    controller.master.mainloop()
