@@ -138,6 +138,12 @@ class Percolation:
 
 
 class PercolationVisModel(Percolation):
+    """
+    models a percolation simulation on a square grid, using
+    a UnionFind data structure.
+    This class carries an additional UF structure that keeps track
+    of the connected components: do not use it for stats runs
+    """
 
     def __init__(self, n: int) -> None:
         """creates n-by-n grid, with all sites initially BLOCKED
@@ -146,6 +152,7 @@ class PercolationVisModel(Percolation):
         """
         super().__init__(n)
         self.uf_cc = WeightedQuickUnionPathCompressionUF(self.size + 1)
+
 
 if __name__ == '__main__':
 
