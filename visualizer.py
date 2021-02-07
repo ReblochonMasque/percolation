@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from percolation import Percolation
+from percolation import PercolationVisModel
 from typing import MutableMapping, Tuple
 
 from pubsub import pub
@@ -108,7 +108,7 @@ class Controller:
 
     def __init__(self, n: int):
         self.n = n
-        self.perco = Percolation(self.n)
+        self.perco = PercolationVisModel(self.n)
         self.master = tk.Tk()
         self.percoframe = PercoFrame(self.master, self, self.n)
         self.percoframe.pack()
