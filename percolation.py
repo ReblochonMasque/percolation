@@ -137,6 +137,16 @@ class Percolation:
         return ''.join(res)
 
 
+class PercolationVisModel(Percolation):
+
+    def __init__(self, n: int) -> None:
+        """creates n-by-n grid, with all sites initially BLOCKED
+
+        :param n: int, number of sites in a side of the square grid
+        """
+        super().__init__(n)
+        self.uf_cc = WeightedQuickUnionPathCompressionUF(self.size + 1)
+
 if __name__ == '__main__':
 
     sites = [(5, 1), (4, 1), (3, 1), (5, 3), (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
