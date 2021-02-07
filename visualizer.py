@@ -24,14 +24,16 @@ class PercolationGridView(tk.Canvas):
 
         self.bind("<Button-1>", self.on_click)
 
+        pub.subscribe(self.update_sites, "update_view")
+
     def on_click(self, event):
         row, col = self.reverse_site_cells[self.find_closest(event.x, event.y)[0]]
         pub.sendMessage("open_site", row=row, col=col)
 
         # replace with subscribtion to pub (msgs from Controller)
         ##########################################################
-        pg = self.master.controller.perco
-        self.update_sites(pg)
+        # pg = self.master.controller.perco
+        # self.update_sites(pg)
 
     def create_grid(self):
         for row in range(self.n):
@@ -116,6 +118,7 @@ class Controller:
 
     def open_site(self, row, col):
         self.perco.open(row, col)
+        pub.sendMessage("update_view", pg=self.perco)
 
 
 def val_closest_to(n: int, val: int) -> int:
