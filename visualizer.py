@@ -30,15 +30,6 @@ class PercolationGridView(tk.Canvas):
 
         pg = self.master.controller.perco
         self.update_sites(pg)
-        # replace with a call to controller
-        ##########################################################################
-        # pg = self.master.controller.perco
-        # print(self.find_closest(event.x, event.y))
-        # print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
-        # pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
-        # self.update_sites(pg)
-        # print(f'components_count: {pg.uf_top.components_count}')
-        # ##########################################################################
 
     def create_grid(self):
         for row in range(self.n):
