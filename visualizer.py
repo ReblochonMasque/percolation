@@ -6,15 +6,16 @@ from typing import MutableMapping, Tuple
 
 class PercolationGridView(tk.Canvas):
 
-    left_offset = 3
-    top_offset = 3
+    lr_offset = 20
+    tb_offset = 20
     states = ['black', 'white', 'blue']
 
-    def __init__(self, master, n: int, **kwargs):
-        super().__init__(master, **kwargs)
+    def __init__(self, master, n: int, width: int = 0, height: int = 0):
+        full_width, full_height = width + 2 * self.lr_offset, height + 2 * self.tb_offset
+        super().__init__(master, width=full_width, height=full_height, bg='cyan')
         self.master = master
         self.n = n
-        self.site_size = kwargs['width'] // self.n
+        self.site_size = width // self.n
         self.site_cells: MutableMapping[Tuple[int, int], int] = {}
         self.reverse_site_cells: MutableMapping[int, Tuple[int, int]] = {}
         self.create_grid()
@@ -45,8 +46,8 @@ class PercolationGridView(tk.Canvas):
             row,
             col
     ) -> Tuple[Tuple[int, int], Tuple[int, int]]:
-        x0 = col * self.site_size + self.left_offset
-        y0 = row * self.site_size + self.top_offset
+        x0 = col * self.site_size + self.lr_offset
+        y0 = row * self.site_size + self.tb_offset
         x1, y1 = x0 + self.site_size, y0 + self.site_size
         return (x0, y0), (x1, y1)
 
@@ -73,8 +74,8 @@ class PercoFrame(tk.Frame):
         self.controller = controller
         self.n = n
         _gw = _gh = val_closest_to(self.n, PercoFrame._grid_width)
-        self.grid_width = _gw + PercolationGridView.left_offset * 2
-        self._grid_height = _gh + PercolationGridView.top_offset * 2
+        self.grid_width = _gw
+        self._grid_height = _gh
         self.percocanvas = PercolationGridView(self, n, width=self.grid_width, height=self._grid_height)
         self.percocanvas.pack()
 
