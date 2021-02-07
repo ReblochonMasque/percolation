@@ -177,6 +177,11 @@ class PercolationVisModel(Percolation):
                 self.uf_bot.connected(site, self.virtual_bot):
             self._percolates = True
 
+    def connected_components_count(self):
+        """returns the count of connected components
+        """
+        return self.uf_cc.components_count
+
 
 if __name__ == '__main__':
 
