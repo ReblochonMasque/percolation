@@ -74,8 +74,7 @@ class PercoFrame(tk.Frame):
         self.controller = controller
         self.n = n
         _gw = _gh = val_closest_to(self.n, PercoFrame._grid_width)
-        self.grid_width = _gw
-        self._grid_height = _gh
+        self.grid_width, self._grid_height = _gw, _gh
         self.percocanvas = PercolationGridView(self, n, width=self.grid_width, height=self._grid_height)
         self.percocanvas.pack()
 
@@ -85,12 +84,12 @@ class PercoFrame(tk.Frame):
         self.open_sites_var = tk.StringVar()
         self.open_sites_var.set(f'open sites: {len(self.controller.perco.opened_site)}')
         self.display_open_sites_lbl = tk.Label(self.left_dash, textvariable=self.open_sites_var)
-        self.display_open_sites_lbl.pack()
+        self.display_open_sites_lbl.pack(anchor=tk.NE)
 
         self.connected_components_var = tk.StringVar()
         self.connected_components_var.set(f'connected_components: {self.controller.perco.uf_top.components_count}')
         self.display_connected_components_lbl = tk.Label(self.left_dash, textvariable=self.connected_components_var)
-        self.display_connected_components_lbl.pack()
+        self.display_connected_components_lbl.pack(anchor=tk.NE)
         self.left_dash.pack(side=tk.LEFT)
 
         self.percolates_var  = tk.StringVar()
