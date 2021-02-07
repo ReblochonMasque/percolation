@@ -117,7 +117,14 @@ class Controller:
 
         pub.subscribe(self.open_site, "open_site")
 
-    def open_site(self, row, col):
+    def open_site(self, row: int, col: int) -> None:
+        """receives instructions from interactive canvas to open a site in the model
+
+        calls for sending a message with the updated model state
+        :param row: int
+        :param col: int
+        :return: None
+        """
         self.perco.open(row, col)
         self.dispatch_messages()
 
