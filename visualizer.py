@@ -30,11 +30,6 @@ class PercolationGridView(tk.Canvas):
         row, col = self.reverse_site_cells[self.find_closest(event.x, event.y)[0]]
         pub.sendMessage("open_site", row=row, col=col)
 
-        # replace with subscribtion to pub (msgs from Controller)
-        ##########################################################
-        # pg = self.master.controller.perco
-        # self.update_sites(pg)
-
     def create_grid(self):
         for row in range(self.n):
             for col in range(self.n):
