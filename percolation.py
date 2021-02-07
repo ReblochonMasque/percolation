@@ -180,7 +180,7 @@ class PercolationVisModel(Percolation):
     def connected_components_count(self):
         """returns the count of connected components
         """
-        return self.uf_cc.components_count
+        return self.uf_cc.components_count - 1
 
 
 if __name__ == '__main__':
