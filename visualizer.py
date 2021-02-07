@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from congeries import WeightedQuickUnionPathCompressionUF
 from percolation import Percolation
 from typing import MutableMapping, Tuple
 
@@ -109,6 +110,7 @@ class Controller:
     def __init__(self, n: int):
         self.n = n
         self.perco = Percolation(self.n)
+        self.uf = WeightedQuickUnionPathCompressionUF(self.n)
         self.master = tk.Tk()
         self.percoframe = PercoFrame(self.master, self, self.n)
         self.percoframe.pack()
