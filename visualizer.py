@@ -128,7 +128,11 @@ class Controller:
         self.perco.open(row, col)
         self.dispatch_messages()
 
-    def dispatch_messages(self):
+    def dispatch_messages(self) -> None:
+        """publishes messages when the status of the model changes
+
+        :return: None
+        """
         pub.sendMessage("update_view", pg=self.perco)
         open_sites = self.perco.number_of_open_sites()
         conn_components = self.perco.uf_top.components_count
