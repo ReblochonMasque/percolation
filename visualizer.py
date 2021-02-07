@@ -135,7 +135,7 @@ class Controller:
         """
         pub.sendMessage("update_view", pg=self.perco)
         open_sites = self.perco.number_of_open_sites()
-        conn_components = self.perco.uf_top.components_count, self.perco.uf_bot.components_count
+        conn_components = self.perco.connected_components_count()
         percolates = self.perco.percolates()
         pub.sendMessage("update_data",
                         open_sites=open_sites,
