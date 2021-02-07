@@ -34,14 +34,14 @@ class PercolationGridView(tk.Canvas):
         for row in range(self.n):
             for col in range(self.n):
                 site = self.create_rectangle(
-                    *self._get_coords(row, col),
+                    *self._get_rectangle_coords(row, col),
                     outline='grey20',
                     fill=self.states[0],
                 )
                 self.site_cells[(row, col)] = site
                 self.reverse_site_cells[site] = (row+1, col+1)
 
-    def _get_coords(
+    def _get_rectangle_coords(
             self,
             row,
             col
@@ -151,6 +151,7 @@ if __name__ == '__main__':
     #
     # tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
 
-    controller = Controller(10)
+    n = 5
+    controller = Controller(n)
 
     controller.master.mainloop()
