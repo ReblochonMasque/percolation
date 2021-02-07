@@ -82,18 +82,15 @@ class PercoFrame(tk.Frame):
 
         self.left_dash = tk.Frame(self)
         self.open_sites_var = tk.StringVar()
-        self.open_sites_var.set(f'open sites: {len(self.controller.perco.opened_site)}')
         self.display_open_sites_lbl = tk.Label(self.left_dash, textvariable=self.open_sites_var)
         self.display_open_sites_lbl.pack(anchor=tk.NE)
 
         self.connected_components_var = tk.StringVar()
-        self.connected_components_var.set(f'connected_components: {self.controller.perco.uf_top.components_count}')
         self.display_connected_components_lbl = tk.Label(self.left_dash, textvariable=self.connected_components_var)
         self.display_connected_components_lbl.pack(anchor=tk.NE)
         self.left_dash.pack(side=tk.LEFT)
 
         self.percolates_var  = tk.StringVar()
-        self.percolates_var.set(f'percolates: {self.controller.perco.percolates()}')
         self.display_percolates_var_lbl = tk.Label(self.dashboard, textvariable=self.percolates_var)
         self.display_percolates_var_lbl.pack(side=tk.RIGHT)
 
@@ -115,6 +112,8 @@ class Controller:
         self.master = tk.Tk()
         self.percoframe = PercoFrame(self.master, self, self.n)
         self.percoframe.pack()
+
+        self.dispatch_messages()
 
         pub.subscribe(self.open_site, "open_site")
 
