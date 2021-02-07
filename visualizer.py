@@ -3,6 +3,8 @@ import tkinter as tk
 from percolation import Percolation
 from typing import MutableMapping, Tuple
 
+from pubsub import pub
+
 
 class PercolationGridView(tk.Canvas):
 
@@ -23,16 +25,20 @@ class PercolationGridView(tk.Canvas):
         self.bind("<Button-1>", self.on_click)
 
     def on_click(self, event):
+        row, col = self.reverse_site_cells[self.find_closest(event.x, event.y)[0]]
+        pub.sendMessage("open_site", row=row, col=col)
 
+        pg = self.master.controller.perco
+        self.update_sites(pg)
         # replace with a call to controller
         ##########################################################################
-        pg = self.master.controller.perco
-        print(self.find_closest(event.x, event.y))
-        print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
-        pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
-        self.update_sites(pg)
-        print(f'components_count: {pg.uf_top.components_count}')
-        ##########################################################################
+        # pg = self.master.controller.perco
+        # print(self.find_closest(event.x, event.y))
+        # print(self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
+        # pg.open(*self.reverse_site_cells[self.find_closest(event.x, event.y)[0]])
+        # self.update_sites(pg)
+        # print(f'components_count: {pg.uf_top.components_count}')
+        # ##########################################################################
 
     def create_grid(self):
         for row in range(self.n):
@@ -112,6 +118,11 @@ class Controller:
         self.master = tk.Tk()
         self.percoframe = PercoFrame(self.master, self, self.n)
         self.percoframe.pack()
+
+        pub.subscribe(self.open_site, "open_site")
+
+    def open_site(self, row, col):
+        self.perco.open(row, col)
 
 
 def val_closest_to(n: int, val: int) -> int:
