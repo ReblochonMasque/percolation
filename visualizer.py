@@ -68,10 +68,9 @@ class PercolationGridView(tk.Canvas):
 class PercoFrame(tk.Frame):
     _grid_width, _grid_height = 600, 600
 
-    def __init__(self, master, controller, n: int):
+    def __init__(self, master, n: int):
         self.master = master
         super().__init__(self.master)
-        self.controller = controller
         self.n = n
         _gw = _gh = val_closest_to(self.n, PercoFrame._grid_width)
         self.grid_width, self._grid_height = _gw, _gh
@@ -105,7 +104,12 @@ class PercoFrame(tk.Frame):
 
 
 class PercoApp(tk.Tk):
-    pass
+
+    def __init__(self, n: int):
+        self.n = n
+        super().__init__()
+        self.percoframe = PercoFrame(self, self.n)
+        self.percoframe.pack()
 
 
 class Controller:
@@ -113,12 +117,8 @@ class Controller:
     def __init__(self, n: int):
         self.n = n
         self.perco = PercolationVisModel(self.n)
-        self.master = tk.Tk()
-        self.percoframe = PercoFrame(self.master, self, self.n)
-        self.percoframe.pack()
-
+        self.master = PercoApp(self.n)
         self.dispatch_messages()
-
         pub.subscribe(self.open_site, "open_site")
 
     def open_site(self, row: int, col: int) -> None:
