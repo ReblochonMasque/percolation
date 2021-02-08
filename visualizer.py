@@ -104,6 +104,10 @@ class PercoFrame(tk.Frame):
         self.percolates_var.set(f'percolates: {percolates}')
 
 
+class PercoApp(tk.Tk):
+    pass
+
+
 class Controller:
 
     def __init__(self, n: int):
