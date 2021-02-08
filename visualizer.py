@@ -121,7 +121,8 @@ class Controller:
         self.dispatch_messages()
         pub.subscribe(self.open_site, "open_site")
 
-        sites = [(5, 1), (4, 1), (3, 1), (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
+        sites = [(5, 1), (4, 1), (3, 1), (1, 4), (1, 5), (2, 5), (5, 3),
+                 (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
         self.run(sites)
 
     def run(self, sites):
