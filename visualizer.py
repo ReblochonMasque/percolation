@@ -121,14 +121,13 @@ class Controller:
         self.dispatch_messages()
         pub.subscribe(self.open_site, "open_site")
 
-        sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
+        sites = [(5, 1), (4, 1), (3, 1), (1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
         self.run(sites)
 
     def run(self, sites):
         site = sites.pop(0)
         self.open_site(*site)
         self.master.after(500, self.run, sites)
-
 
     def open_site(self, row: int, col: int) -> None:
         """receives instructions from interactive canvas to open a site in the model
