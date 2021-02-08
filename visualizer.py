@@ -172,18 +172,6 @@ def val_closest_to(n: int, val: int) -> int:
 
 if __name__ == '__main__':
 
-    # sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
-    #
-    # root = tk.Tk()
-    # root.geometry(f'{WIDTH}x{HEIGHT}+100+100')
-    # n = 5
-    # pv = PercolationGridView(root, n, (WIDTH - PercolationGridView.left_offset * 2) // n)
-    # pv.pack(expand=True, fill=tk.BOTH)
-    #
-    # pg = Percolation(n)
-    #
-    # tk.Button(root, text='run', command=lambda: run(pg, pv, sites)).pack()
-
     n = 5
     controller = Controller(n)
 
