@@ -170,13 +170,6 @@ def val_closest_to(n: int, val: int) -> int:
     return (n_partitions + 1) * n
 
 
-# def run(pg, pv, sites):
-#     site = sites.pop(0)
-#     pg.open(*site)
-#     pv.update_sites(pg)
-#     root.after(500, run, pg, pv, sites)
-
-
 if __name__ == '__main__':
 
     # sites = [(1, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (4, 5), (5, 5), (1, 2)]
